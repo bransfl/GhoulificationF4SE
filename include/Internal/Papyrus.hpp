@@ -3,7 +3,7 @@
 namespace Internal::Papyrus
 {
 	// Papyrus script name
-	static constexpr std::string_view SCRIPT_NAME = "GHUL:GhoulificationF4SE"sv;
+	static inline constexpr std::string_view SCRIPT_NAME = "GHUL:GhoulificationF4SE"sv;
 
 	/**
 	 * @brief Sets the player's CharGenRace to the given race.
