@@ -2,11 +2,11 @@ Scriptname GHUL:GhoulificationF4SE native hidden
 
 
 ;/
-; @brief	Sets the player's CharGenRace to the given race.
+; @brief	Sets the player's charGenRace to the given race.
 ; 
-; @param akNewRace	The player's new CharGenRace race.
-; @return	True if the player's CharGenRace was successfully set.
-;			False if the player's CharGenRace was not successfully set.
+; @param akNewRace	The player's new charGenRace race.
+; @return	True if the player's charGenRace was successfully set.
+;			False if the player's charGenRace was not successfully set.
 /;
 bool Function SetPlayerCharGenRace(Race akNewRace) Global Native
 

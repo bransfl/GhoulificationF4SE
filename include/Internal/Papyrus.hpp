@@ -2,7 +2,7 @@
 
 namespace Internal::Papyrus
 {
-	// Papyrus script name
+	// papyrus script name
 	static inline constexpr std::string_view SCRIPT_NAME = "GHUL:GhoulificationF4SE"sv;
 
 	/**
