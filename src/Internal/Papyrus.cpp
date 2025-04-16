@@ -3,10 +3,10 @@
 namespace Internal::Papyrus
 {
 	static bool SetPlayerCharGenRace(RE::BSScript::IVirtualMachine& a_vm, RE::VMStackID a_vmStackID, std::monostate,
-		RE::TESRace* a_raceToSet)
+		RE::TESRace* a_newRace) noexcept
 	{
-		if (!a_raceToSet) {
-			a_vm.PostError("Argument a_raceToSet was nullptr"sv, a_vmStackID, RE::BSScript::ErrorLogger::Severity::kError);
+		if (!a_newRace) {
+			a_vm.PostError("Argument a_newRace was nullptr"sv, a_vmStackID, RE::BSScript::ErrorLogger::Severity::kError);
 			return false;
 		}
 
@@ -16,18 +16,30 @@ namespace Internal::Papyrus
 			return false;
 		}
 
-		player->charGenRace = a_raceToSet;
+		player->charGenRace = a_newRace;
 		return true;
 	}
 
-	static bool RegisterFunctions(RE::BSScript::IVirtualMachine* a_vm)
+	static RE::TESRace* GetPlayerCharGenRace(RE::BSScript::IVirtualMachine& a_vm, RE::VMStackID a_vmStackID, std::monostate) noexcept
+	{
+		RE::PlayerCharacter* player = RE::PlayerCharacter::GetSingleton();
+		if (!player) {
+			a_vm.PostError("RE::PlayerCharacter* player was nullptr"sv, a_vmStackID, RE::BSScript::ErrorLogger::Severity::kError);
+			return nullptr;
+		}
+
+		return player->charGenRace;
+	}
+
+	static bool RegisterFunctions(RE::BSScript::IVirtualMachine* a_vm) noexcept
 	{
 		a_vm->BindNativeMethod(SCRIPT_NAME, "SetPlayerCharGenRace"sv, SetPlayerCharGenRace, true);
+		a_vm->BindNativeMethod(SCRIPT_NAME, "GetPlayerCharGenRace"sv, GetPlayerCharGenRace, true);
 
 		return true;
 	}
 
-	bool Callback(RE::BSScript::IVirtualMachine* a_vm)
+	bool Callback(RE::BSScript::IVirtualMachine* a_vm) noexcept
 	{
 		if (!RegisterFunctions(a_vm)) {
 			logger::error("Failed to register papyrus functions"sv);
@@ -35,7 +47,7 @@ namespace Internal::Papyrus
 			return false;
 		}
 
-		logger::info("Papyrus functions registered"sv);
+		logger::info("Papyrus functions successfully registered"sv);
 		return true;
 	}
 
