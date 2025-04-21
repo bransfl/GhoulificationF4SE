@@ -28,7 +28,8 @@ namespace Internal::Papyrus
 			return nullptr;
 		}
 
-		return player->charGenRace;
+		RE::TESRace* playerCharGenRace = player->charGenRace;
+		return playerCharGenRace;
 	}
 
 	static bool RegisterFunctions(RE::BSScript::IVirtualMachine* a_vm) noexcept
@@ -50,5 +51,4 @@ namespace Internal::Papyrus
 		logger::info("Papyrus functions successfully registered"sv);
 		return true;
 	}
-
 }

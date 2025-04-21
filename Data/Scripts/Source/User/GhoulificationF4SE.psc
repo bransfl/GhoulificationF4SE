@@ -1,4 +1,9 @@
-Scriptname GHUL:GhoulificationF4SE native hidden
+Scriptname GhoulificationF4SE native hidden
+{
+	Papyrus script for GhoulificationF4SE.dll functions.
+	
+	@author bp42s
+}
 
 
 ;/
