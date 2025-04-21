@@ -1,8 +1,8 @@
 #include "Internal/Papyrus.hpp"
 
-namespace Internal::Papyrus
+namespace Internal
 {
-	static bool SetPlayerCharGenRace(RE::BSScript::IVirtualMachine& a_vm, RE::VMStackID a_vmStackID, std::monostate,
+	bool Papyrus::SetPlayerCharGenRace(RE::BSScript::IVirtualMachine& a_vm, RE::VMStackID a_vmStackID, std::monostate,
 		RE::TESRace* a_newRace) noexcept
 	{
 		if (!a_newRace) {
@@ -20,7 +20,7 @@ namespace Internal::Papyrus
 		return true;
 	}
 
-	static RE::TESRace* GetPlayerCharGenRace(RE::BSScript::IVirtualMachine& a_vm, RE::VMStackID a_vmStackID, std::monostate) noexcept
+	RE::TESRace* Papyrus::GetPlayerCharGenRace(RE::BSScript::IVirtualMachine& a_vm, RE::VMStackID a_vmStackID, std::monostate) noexcept
 	{
 		RE::PlayerCharacter* player = RE::PlayerCharacter::GetSingleton();
 		if (!player) {
@@ -32,7 +32,7 @@ namespace Internal::Papyrus
 		return playerCharGenRace;
 	}
 
-	static bool RegisterFunctions(RE::BSScript::IVirtualMachine* a_vm) noexcept
+	bool Papyrus::RegisterFunctions(RE::BSScript::IVirtualMachine* a_vm) noexcept
 	{
 		a_vm->BindNativeMethod(SCRIPT_NAME, "SetPlayerCharGenRace"sv, SetPlayerCharGenRace, true);
 		a_vm->BindNativeMethod(SCRIPT_NAME, "GetPlayerCharGenRace"sv, GetPlayerCharGenRace, true);
@@ -40,7 +40,7 @@ namespace Internal::Papyrus
 		return true;
 	}
 
-	bool Callback(RE::BSScript::IVirtualMachine* a_vm) noexcept
+	bool Papyrus::Callback(RE::BSScript::IVirtualMachine* a_vm) noexcept
 	{
 		if (!RegisterFunctions(a_vm)) {
 			logger::error("Failed to register papyrus functions"sv);
