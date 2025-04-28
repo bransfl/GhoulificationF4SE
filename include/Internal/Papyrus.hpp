@@ -1,5 +1,8 @@
 #pragma once
 
+// default script parameters required by the VM and stuff
+#define SCRIPT_PARAMS RE::BSScript::IVirtualMachine &a_vm, RE::VMStackID a_vmStackID, std::monostate
+
 namespace Internal
 {
 	class Papyrus
@@ -15,15 +18,14 @@ namespace Internal
 		 * @return True if the player's CharGenRace was successfully set.
 		 *		   False if the player's CharGenRace was not successfully set.
 		 */
-		static bool SetPlayerCharGenRace(RE::BSScript::IVirtualMachine& a_vm, RE::VMStackID a_vmStackID, std::monostate,
-			RE::TESRace* a_newRace) noexcept;
+		static bool SetPlayerCharGenRace(SCRIPT_PARAMS, RE::TESRace* a_newRace) noexcept;
 
 		/**
 		 * @brief Gets the player's charGenRace member.
 		 *
 		 * @return The player's charGenRace member.
 		 */
-		static RE::TESRace* GetPlayerCharGenRace(RE::BSScript::IVirtualMachine& a_vm, RE::VMStackID a_vmStackID, std::monostate) noexcept;
+		static RE::TESRace* GetPlayerCharGenRace(SCRIPT_PARAMS) noexcept;
 
 		/**
 		 * @brief Registers new Papyrus functions with the VM.

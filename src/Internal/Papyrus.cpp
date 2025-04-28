@@ -2,8 +2,7 @@
 
 namespace Internal
 {
-	bool Papyrus::SetPlayerCharGenRace(RE::BSScript::IVirtualMachine& a_vm, RE::VMStackID a_vmStackID, std::monostate,
-		RE::TESRace* a_newRace) noexcept
+	bool Papyrus::SetPlayerCharGenRace(SCRIPT_PARAMS, RE::TESRace* a_newRace) noexcept
 	{
 		if (!a_newRace) {
 			a_vm.PostError("Argument a_newRace was nullptr"sv, a_vmStackID, RE::BSScript::ErrorLogger::Severity::kError);
@@ -20,7 +19,7 @@ namespace Internal
 		return true;
 	}
 
-	RE::TESRace* Papyrus::GetPlayerCharGenRace(RE::BSScript::IVirtualMachine& a_vm, RE::VMStackID a_vmStackID, std::monostate) noexcept
+	RE::TESRace* Papyrus::GetPlayerCharGenRace(SCRIPT_PARAMS) noexcept
 	{
 		RE::PlayerCharacter* player = RE::PlayerCharacter::GetSingleton();
 		if (!player) {
@@ -28,8 +27,7 @@ namespace Internal
 			return nullptr;
 		}
 
-		RE::TESRace* playerCharGenRace = player->charGenRace;
-		return playerCharGenRace;
+		return player->charGenRace;
 	}
 
 	bool Papyrus::RegisterFunctions(RE::BSScript::IVirtualMachine* a_vm) noexcept
