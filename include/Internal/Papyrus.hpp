@@ -9,7 +9,7 @@ namespace Internal
 	{
 	public:
 		// Papyrus script name.
-		static inline constexpr std::string_view SCRIPT_NAME = "GhoulificationF4SE"sv;
+		static inline const constexpr std::string_view SCRIPT_NAME = "GhoulificationF4SE"sv;
 
 		/**
 		 * @brief Sets the player's CharGenRace to the given race.
@@ -26,6 +26,15 @@ namespace Internal
 		 * @return The player's charGenRace member.
 		 */
 		static RE::TESRace* GetPlayerCharGenRace(SCRIPT_PARAMS) noexcept;
+
+		/**
+		 * @brief Checks if the player's charGenRace is the same as akRaceToCompare.
+		 *
+		 * @param a_raceToCompare The race to compare to the player's charGenRace.
+		 * @return True if the player's charGenRace is the same as akRaceToCompare.
+		 *		   False if the player's charGenRace is not the same as akRaceToCompare.
+		 */
+		static bool IsPlayerCharGenRace(SCRIPT_PARAMS, RE::TESRace* a_raceToCompare) noexcept;
 
 		/**
 		 * @brief Registers new Papyrus functions with the VM.

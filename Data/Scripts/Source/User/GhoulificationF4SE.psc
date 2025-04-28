@@ -7,18 +7,28 @@ Scriptname GhoulificationF4SE native hidden
 
 
 ;/
-; @brief	Sets the player's charGenRace member to the given race.
-; 
-; @param akNewRace	The player's new charGenRace member.
-; @return	True if the player's charGenRace member was successfully set.
-;			False if the player's charGenRace member was not successfully set.
+; Gets the player's charGenRace.
+;
+; @return	The player's charGenRace.
+/;
+Race Function GetPlayerCharGenRace() Global Native
+
+
+;/
+; Sets the player's charGenRace to the given race.
+;
+; @param akNewRace	The player's new charGenRace.
+; @return	True if the player's charGenRace was successfully set.
+;			False if the player's charGenRace was not successfully set.
 /;
 bool Function SetPlayerCharGenRace(Race akNewRace) Global Native
 
 
 ;/
-; @brief	Gets the player's charGenRace member.
-; 
-; @return	The player's charGenRace member.
+; Checks if the player's charGenRace is the same as akRaceToCompare.
+;
+; @param akRaceToCompare	The race to compare to the player's charGenRace.
+; @return 	True if the player's charGenRace is the same as akRaceToCompare.
+;			False if the player's charGenRace is not the same as akRaceToCompare.
 /;
-Race Function GetPlayerCharGenRace() Global Native
+bool Function IsPlayerCharGenRace(Race akRaceToCompare) Global Native

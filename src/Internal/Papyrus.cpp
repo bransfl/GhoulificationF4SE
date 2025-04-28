@@ -30,10 +30,27 @@ namespace Internal
 		return player->charGenRace;
 	}
 
+	bool Papyrus::IsPlayerCharGenRace(SCRIPT_PARAMS, RE::TESRace* a_raceToCompare) noexcept
+	{
+		if (!a_raceToCompare) {
+			a_vm.PostError("Argument a_newRace was nullptr"sv, a_vmStackID, RE::BSScript::ErrorLogger::Severity::kError);
+			return false;
+		}
+
+		RE::PlayerCharacter* player = RE::PlayerCharacter::GetSingleton();
+		if (!player) {
+			a_vm.PostError("RE::PlayerCharacter* player was nullptr"sv, a_vmStackID, RE::BSScript::ErrorLogger::Severity::kError);
+			return false;
+		}
+
+		return player->charGenRace == a_raceToCompare;
+	}
+
 	bool Papyrus::RegisterFunctions(RE::BSScript::IVirtualMachine* a_vm) noexcept
 	{
 		a_vm->BindNativeMethod(SCRIPT_NAME, "SetPlayerCharGenRace"sv, SetPlayerCharGenRace, true);
 		a_vm->BindNativeMethod(SCRIPT_NAME, "GetPlayerCharGenRace"sv, GetPlayerCharGenRace, true);
+		a_vm->BindNativeMethod(SCRIPT_NAME, "IsPlayerCharGenRace"sv, IsPlayerCharGenRace, true);
 
 		return true;
 	}

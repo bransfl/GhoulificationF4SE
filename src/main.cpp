@@ -42,10 +42,8 @@ extern "C" DLLEXPORT bool F4SEAPI F4SEPlugin_Load(const F4SE::LoadInterface* a_f
 {
 	F4SE::Init(a_f4se);
 
-	logger::info("Registering Papyrus functions callback..."sv);
-	const F4SE::PapyrusInterface* papyrusInterface = F4SE::GetPapyrusInterface();
-	papyrusInterface->Register(Internal::Papyrus::Callback);
-	logger::info("Registered Papyrus functions callback"sv);
+	// register callback to implement functions from GhoulificationF4SE.psc
+	F4SE::GetPapyrusInterface()->Register(Internal::Papyrus::Callback);
 
 	logger::info("Loaded"sv);
 
